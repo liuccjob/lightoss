@@ -1,0 +1,32 @@
+@(connected: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>MIB 兼容测试系统</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/jquery-ui.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-ui.min.js")"></script>
+        <script type="text/javascript" charset="utf-8" src="@routes.Application.mainJS()"></script>
+    </head>
+    <body>
+        <div class="nav-wrapper">
+            <div class="nav-container">
+                <h1 class="sys-title float-left">MIB 兼容测试系统</h1>
+                <ul class="menu float-left">
+                    <li><a class="active" href="@routes.Application.index()">广东省网 EoC 标准测试</a></li>
+                    <li><a href="@routes.Application.update()">版本更新</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                @content
+            </div>
+        </div>
+    </body>
+</html>

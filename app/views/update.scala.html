@@ -1,0 +1,23 @@
+@main(null) {
+    <div class="form-container">
+        <p>当前版本：<span class="blue">V1.0</span></p>
+        <p>发布时间：<span class="blue">2014-11-17</span></p>
+        <div><button id="checkBtn">检查更新</button></div>
+        
+        <hr class="dashed-hr">
+
+        <p>最新版本：<span class="blue">V1.0.1</span></p>
+        <p>发布时间：<span class="blue">2014-12-27</span></p>
+        <p>大小：<span class="margin-left-24 blue">0.7M</span></p>
+        <p>新增功能：<span class="blue">1 修改CBAT告警控制测试标准</span></p>
+        <p><span class="margin-left-60 blue">2 增加了测试报告导出格式，可以生成PDF, EXCEL文档</span></p>
+        <div><button id="updateBtn">现在更新</button></div>
+    </div>
+    <script type="text/javascript">
+        $('#checkBtn').button();
+        $('#updateBtn').button();
+
+        $('.menu a:eq(0)').removeClass('active');
+        $('.menu a:eq(1)').addClass('active');
+    </script>
+}

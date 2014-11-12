@@ -1,0 +1,25 @@
+1 startTest
+request:  type, 		//1=CBAT, 2=CARD, 3=CNU, 4=CNU Port
+		  masterIP, 
+		  vendorId, 
+		  readCommunity, 
+		  writeCommunity, 
+		  retry, 
+		  timeout, 
+		  mac
+response: [{"id": 1, "status":1},	//status=0:not pass, status=1:vendor pass, status=2:standard pass
+		   {"id": 2, "status":0}]
+
+2 getCurrentVersion
+request:  
+response: {"version":"V1.0", 
+		   "date":"2014-12-01"}
+
+3 getLatestVersion
+request:
+response: {"version":"V1.0", 
+		   "date":"2014-12-01", 
+		   "size":"1.0M", 
+		   "newFeature":"some new features"}
+
+4 update

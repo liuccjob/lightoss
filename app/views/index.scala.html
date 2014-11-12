@@ -1,0 +1,640 @@
+@main(null) {
+    <a id="top"></a>    
+    <!-- test condition -->
+    <div class="form-container">
+        <table class="layout-table">
+            <tr>
+                <td width="90">EoC Master IP</td>
+                <td width="150"><input type="text" id="masterIp"></td>
+                <td width="150">SNMP Read Community</td>
+                <td width="150"><input type="text" value="public"></td>
+                <td width="80">重试次数</td>
+                <td width="150"><input type="text" value="3" id="retry"></td>
+                <td width="35">厂家</td>
+                <td>
+                    <select>
+                        <option>厂家ABC</option>
+                        <option>厂家DEF</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Modem MAC</td>
+                <td><input type="text"></td>
+                <td>SNMP Write Community</td>
+                <td><input type="text" value="private"></td>
+                <td>超时（毫秒）</td>
+                <td><input type="text" value="3000"></td>
+                <td></td>
+                <td><button id="startAllBtn">开始全部测试</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- progressbar -->
+    <div class="common-wrapper">
+        <div id="progressbar">
+            <div class="progressbar-label">测试进度：50%</div>
+        </div>
+    </div>
+
+    <!-- CBAT -->
+    <div class="common-wrapper padding-bottom-20">
+        <table id="cbatTable" class="noborder-table">
+            <thead>
+                <tr>
+                    <th width="180">CBAT 测试项</th>
+                    <th width="300">功能描述</th>
+                    <th width="120">读写</th>
+                    <th width="180">厂家 MIB 支持</th>
+                    <th width="180">标准 MIB 支持</th>
+                </tr>   
+            </thead>
+            <tbody>
+                <tr id="cbat-1">
+                    <td>CBAT-1</td>
+                    <td>CBAT MAC</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr id="cbat-2">
+                    <td>CBAT-2</td>
+                    <td>管理IP</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr id="cbat-3">
+                    <td>CBAT-3</td>
+                    <td>硬件版本</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-4</td>
+                    <td>固件版本</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-5</td>
+                    <td>上线时间</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-6</td>
+                    <td>温度</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-7</td>
+                    <td>CPU 负载</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-8</td>
+                    <td>最大温度阈值</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-9</td>
+                    <td>内存使用</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-10</td>
+                    <td>告警控制</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-11</td>
+                    <td>在线终端数量</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CBAT-12</td>
+                    <td>在线终端数量限制</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="float-right margin-top-10">
+            <button id="startCbatBtn">开始 CBAT 测试</button>
+        </div>
+    </div>
+    
+    <!-- divider -->
+    <div class="common-wrapper clear-both"><hr class="dashed-hr"></div>
+
+    <!-- CARD -->
+    <div class="common-wrapper">
+        <table id="cardTable" class="noborder-table">
+            <thead>
+                <tr>
+                    <th width="180">CARD 测试项</th>
+                    <th width="300">功能描述</th>
+                    <th width="120">读写</th>
+                    <th width="180">厂家 MIB 支持</th>
+                    <th width="180">标准 MIB 支持</th>
+                </tr>   
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CARD-1</td>
+                    <td>设备类型</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-2</td>
+                    <td>硬件版本</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-3</td>
+                    <td>固件版本</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-4</td>
+                    <td>序列号</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-5</td>
+                    <td>MAC</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-6</td>
+                    <td>状态</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-7</td>
+                    <td>上线时间</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-8</td>
+                    <td>温度</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-9</td>
+                    <td>射频最大信道数</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-10</td>
+                    <td>射频下行信道起始频率</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-11</td>
+                    <td>射频下行信道终止频率</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-12</td>
+                    <td>射频上行信道起始频率</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-13</td>
+                    <td>射频上行信道终止频率</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CARD-14</td>
+                    <td>射频输出功率电平</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="float-right margin-top-10">
+            <button id="startCardBtn">开始 CARD 测试</button>
+        </div>
+    </div>
+
+    <!-- divider -->
+    <div class="common-wrapper clear-both"><hr class="dashed-hr"></div>
+
+    <!-- CNU -->
+    <div class="common-wrapper">
+        <table id="cnuTable" class="noborder-table">
+            <thead>
+                <tr>
+                    <th width="180">CNU 测试项</th>
+                    <th width="300">功能描述</th>
+                    <th width="120">读写</th>
+                    <th width="180">厂家 MIB 支持</th>
+                    <th width="180">标准 MIB 支持</th>
+                </tr>   
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CNU-1</td>
+                    <td>MAC</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-2</td>
+                    <td>管理状态</td>
+                    <td>W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-3</td>
+                    <td>型号</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-4</td>
+                    <td>状态</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-5</td>
+                    <td>固件版本</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-6</td>
+                    <td>接入控制</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-7</td>
+                    <td>授权状态</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-8</td>
+                    <td>射频下行信道链路质量</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-9</td>
+                    <td>射频上行信道链路质量</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-10</td>
+                    <td>下行物理层速率</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-11</td>
+                    <td>上行物理层速率</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-12</td>
+                    <td>射频信道链路衰减</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-13</td>
+                    <td>设备 IGMP Snooping 开关</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-14</td>
+                    <td>下行最大带宽</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-15</td>
+                    <td>上行最大带宽</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-16</td>
+                    <td>环路检测</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-17</td>
+                    <td>端口隔离</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-18</td>
+                    <td>接入 MAC 控制</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-19</td>
+                    <td>上行 SNR</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU-20</td>
+                    <td>下行 SNR</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="float-right margin-top-10">
+            <button id="startCnuBtn">开始 CNU 测试</button>
+        </div>
+    </div>
+
+    <!-- divider -->
+    <div class="common-wrapper clear-both"><hr class="dashed-hr"></div>
+
+    <!-- CNU Port-->
+    <div class="common-wrapper">
+        <table id="cnuPortTable" class="noborder-table">
+            <thead>
+                <tr>
+                    <th width="180">CNU Port 测试项</th>
+                    <th width="300">功能描述</th>
+                    <th width="120">读写</th>
+                    <th width="180">厂家 MIB 支持</th>
+                    <th width="180">标准 MIB 支持</th>
+                </tr>   
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CNU Port-1</td>
+                    <td>端口号</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-2</td>
+                    <td>上行限速</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-3</td>
+                    <td>下行限速</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-4</td>
+                    <td>VLAN 模式</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-5</td>
+                    <td>PVID</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-6</td>
+                    <td>taggedPVID</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-7</td>
+                    <td>untaggedPVID</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-8</td>
+                    <td>优先级</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-9</td>
+                    <td>状态</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-10</td>
+                    <td>速率模式</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-11</td>
+                    <td>双工模式</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-12</td>
+                    <td>广播包抑制使能</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-13</td>
+                    <td>广播包抑制值</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-14</td>
+                    <td>多播包抑制使能</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-15</td>
+                    <td>多播包抑制值</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-16</td>
+                    <td>未知包抑制使能</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-17</td>
+                    <td>未知包抑制值</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-18</td>
+                    <td>业务索引</td>
+                    <td>R</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CNU Port-19</td>
+                    <td>端口状态</td>
+                    <td>R/W</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="float-right margin-top-10">
+            <button id="startCnuPortBtn">开始 CNU Port 测试</button>
+        </div>
+    </div>
+
+    <!-- divider -->
+    <div class="common-wrapper clear-both"><hr class="dashed-hr"></div>
+
+    <!-- report -->
+    <div class="form-container">
+        <table class="layout-table" id="reportTable">
+            <tr>
+                <td width="100">厂家支持百分比</td>
+                <td width="150" class="blue">23%</td>
+                <td width="100">Firmware 版本</td>
+                <td class="blue">EoC-firmware-1.2.1587</td>
+                <td width="80">测试时间</td>
+                <td class="blue">2014-11-22 10:30</td>
+            </tr>
+            <tr>
+                <td>标准支持百分比</td>
+                <td class="blue">43%</td>
+                <td>测试备注</td>
+                <td colspan="3" rowspan="2"><textarea></textarea></td>
+            </tr>
+            <tr>
+                <td>合计支持百分比</td>
+                <td class="blue">66%</td>
+            </tr>
+            <tr>
+                <td colspan="6" align="right"><button id="reportBtn">生成测试报告</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="toTop"><a href="#top"></a></div>
+
+    <script type="text/javascript">
+         // init buttons and progressbar
+        $('#startAllBtn').button();
+        
+        $('#startCbatBtn').button();
+        
+        $('#startCardBtn').button();
+        
+        $('#startCnuBtn').button();
+        
+        $('#startCnuPortBtn').button();
+        
+        $('#reportBtn').button();
+        $( "#progressbar" ).progressbar({value: 50});
+
+        $('#masterIp').focus();
+		
+        
+    </script>    
+}
